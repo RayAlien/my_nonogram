@@ -50,7 +50,12 @@ def create_lattice(squares, ng_settings, screen, stats):
         for y_number in range(15):
             create_square(ng_settings, screen, squares_l, x_number, y_number, stats)
         squares.append(squares_l)
-
+    # 控制FILL的比例
+    if stats.fill_total < int((ng_settings.game_size ** 2) * 0.5):
+        squares.clear()
+        create_lattice(squares, ng_settings, screen, stats)
+    else:
+        print(stats.fill_total)
 
 def count_single_x(squares, y):
     '''计算一行的hint'''
